@@ -2,6 +2,7 @@
 // creating a function to display posts 
 function displayPosts(posts){
     const ul = document.getElementById('post-list');
+    ul.innerHTML = '';
     
     posts.forEach( post => {
     const li = document.createElement('li')
@@ -20,12 +21,12 @@ function displayPosts(posts){
 // creating async function to fetch data
 async function fetchAndDisplayPosts() {
     try {
-        const response = await fetch('https://typicode.com');
+           const response = await fetch('https://jsonplaceholder.typicode.com/posts');
         if (!response.ok) {
-            throw new error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const posts = await response.json();
+        const posts = await  response.json();
         displayPosts(posts);
     }
     catch (error){
